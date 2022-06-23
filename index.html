@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+    <label>Book Id</label>
+    <input type="text" name="bookId" id="bookId" />
+</div>
+<div>
+    <label>Book Name <label>
+        <input type="text" name="bookName" id="bookName" />
+
+</div>
+<div>
+ 
+    <label>Price</label>
+    <input type="text" name="Price" id="Price"/>
+
+
+</div>
+<div>
+    <input type="button" value ="update" id="update" name="update">
+
+</div>
+
+
+<script src="jquery-3.5.1.min.js"></script>
+
+
+    <script>
+
+$(document ).redy() =>{
+        console.log("Working");
+        $('#bookid').blur( () => {
+            console.log("Blur Occured");
+        }
+        let input ={ bookId ;$(#'bookid').val()}
+        let paramaters ={
+            data : input,
+            url: 'http://localhostz;8081/getbookdetails',
+            type :get,
+            datatype: 'json',
+            success : (datafromserver) =>{
+                if(datafromserver.ststus ===true){
+                    console.log("Book iD found ");
+                    $(#msg).text("Book id Found");
+                    $('#bookname').val(datafromserver.details.bookname);
+                    $(#price).val(datafromserver.details.price);
+                }
+                else{
+                    console.log("Book id not found");
+                    $(#msg).text("Book not id Found");
+                $(#price).val("");
+
+                },error:(errorfromserver)=>
+                {
+                    console.log(Error);
+                }
+                $.ajax(paramaters);
+            });
+            $('update').click()=>
+            let input = {bookid : $ ('#bookid'.val(),price: $('#price').val())}
+            let paramaterstothefunction={
+                data:input,
+                url='http://localhost:8-81/updateprice',
+                type: 'get',
+                success : (datafromserver)=>{
+                    if (datafromserver=== true){
+                        $('msg').text("Book price Updated");
+
+                    }
+                    else{
+                        $('msg').text("Book price not Updated")
+                        $('#bookname').val("");
+                        $('#price').val("");
+
+                    }
+                    error:(errorfromserver)=>{
+                        console.log(error);
+                    }
+                    $.ajax(paramaterstoretofunction);
+                });
+            
+
+
+
+            
+        
+    </script>
+
+
+
+
+
+
+    
+
+
+
+
+
+  </body>
+</html>
